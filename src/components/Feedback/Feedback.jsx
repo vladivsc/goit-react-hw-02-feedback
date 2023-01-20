@@ -1,8 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Section from './Section/Section'
 import Statistics from './Statistics/Statistics';
-import styles from '../Feedback/feedback.module.css';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions'
+import Notification from './Notification/Notification'
+
 
 class Feedback extends Component {
   state = {
@@ -11,7 +14,7 @@ class Feedback extends Component {
     bad: 0,
   };
 
-  leaveVote(name) {
+  onLeaveFeedback = (name) => {
     this.setState(prevState => {
       return { [name]: prevState[name] + 1 };
     });
@@ -38,27 +41,21 @@ class Feedback extends Component {
     const positivePercentage = this.countPositiveFeedbackPercentage();
 
     return (
-      <div className={styles.feedback_container}>
-        <h3 className={styles.feedback_title}>Please leave feedback</h3>
-        <div>
-          <button onClick={() => this.leaveVote('good')} className={styles.btn}>
-            Good
-          </button>
-          <button
-            onClick={() => this.leaveVote('neutral')}
-            className={styles.btn}
-          >
-            Neutral
-          </button>
-          <button onClick={() => this.leaveVote('bad')} className={styles.btn}>
-            Bad
-          </button>
-        </div>
-        <h3 className={styles.feedback_title}>Statistics</h3>
-        <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage} />
-      </div>
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback}/>
+          </Section>
+          {this.countTotalFeedback() === 0 && <Notification message="There is no feedback" />}
+          {this.countTotalFeedback() !== 0 && <Section title="Statistics">
+          <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage} />
+          </Section>}
+        </>
     );
   }
 }
 
 export default Feedback;
+
+Feedback.propTypes = {
+  
+}
