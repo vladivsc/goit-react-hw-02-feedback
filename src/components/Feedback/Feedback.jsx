@@ -5,6 +5,8 @@ import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions'
 import Notification from './Notification/Notification'
 
+const voteOptions = ["good", "neutral", "neutral"];
+
 
 class Feedback extends Component {
   state = {
@@ -30,8 +32,8 @@ class Feedback extends Component {
     if (!total) {
       return 0;
     }
-    const positivePercent = ((this.state.good / total) * 100).toFixed(2);
-    return Number(positivePercent);
+    const positivePercent = ((this.state.good / total) * 100);
+    return Number(Math.round(positivePercent));
   }
 
   render() {
@@ -42,10 +44,9 @@ class Feedback extends Component {
     return (
       <>
         <Section title="Please leave feedback">
-          <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback}/>
+          <FeedbackOptions options={voteOptions} onLeaveFeedback={this.onLeaveFeedback}/>
           </Section>
-          {this.countTotalFeedback() === 0 && <Notification message="There is no feedback" />}
-          {this.countTotalFeedback() !== 0 && <Section title="Statistics">
+          {this.countTotalFeedback() === 0 ? <Notification message="There is no feedback" /> : <Section title="Statistics">
           <Statistics good={good} neutral={neutral} bad={bad} total={total} positivePercentage={positivePercentage} />
           </Section>}
         </>
