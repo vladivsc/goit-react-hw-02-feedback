@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import styles from '../feedback.module.css';
+import styles from '../Button/button.module.css';
 
-const Button = ({text, onClick, type}) => {
-  return <button onClick={onClick} className={styles.btn} type={type}>{text}</button>
+const Button = ({children, onClick, type}) => {
+  return <button onClick={onClick} className={styles.btn} type={type}>{children}</button>
 }
 
 export default Button;

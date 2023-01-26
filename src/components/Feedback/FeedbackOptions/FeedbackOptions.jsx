@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import Button from "../Button/Button";
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
-  const elements = options.map((name) => { <div> <Button onClick={() => onLeaveFeedback(name)} type="button">good</Button></div>
-  })
+  const elements = options.map((name) =>  <p> <Button onClick={() => onLeaveFeedback(name)} type="button">{name}</Button></p>
+  )
   return (
     <>
     {elements}

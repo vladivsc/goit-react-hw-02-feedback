@@ -5,7 +5,7 @@ import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions'
 import Notification from './Notification/Notification'
 
-const voteOptions = ["good", "neutral", "neutral"];
+const voteOptions = ["good", "neutral", "bad"];
 
 
 class Feedback extends Component {

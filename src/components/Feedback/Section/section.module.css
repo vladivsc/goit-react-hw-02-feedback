@@ -3,3 +3,12 @@
   font-size: 24px;
   font-weight: bold;
 }
+.block {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  display: inline-flex;
+  flex-direction: column;
+}
